@@ -1,0 +1,1 @@
+copy plugin.txt "C:\Program Files\Common Files\VST3"

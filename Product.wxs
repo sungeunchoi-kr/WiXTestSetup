@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="WiXTestSetup" Language="1033" Version="1.0.0.0" Manufacturer="Muse" UpgradeCode="eb38a13d-1a7e-4fca-80a5-5871dc535508">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <!-- EmbedCab="yes" embeds the data files inside the msi. -->
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="WiXTestSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+
+    <!--<CustomAction Id="RegisterEXE"
+      Directory="INSTALLFOLDER"
+      ExeCommand="&quot;[INSTALLFOLDER]example.exe&quot;"
+      Execute="immediate"
+      Return="ignore"
+      Impersonate="no"
+    />-->
+    <CustomAction Id="RegisterEXE"
+      Directory="INSTALLFOLDER"
+      ExeCommand="&quot;[INSTALLFOLDER]install-plugin.bat&quot;"
+      Execute="deferred"
+      Return="ignore"
+      Impersonate="no"
+    />
+
+    <InstallExecuteSequence>
+      <Custom Action='RegisterEXE' After='InstallFiles' />
+    </InstallExecuteSequence>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="WiXTestSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="ProductComponent" Guid="a90cf0cd-76b5-469f-a701-300e9dbc490c">
+				<!-- Insert files, registry keys, and other resources here. -->
+        <File Id="ApplicationFile2" Source="install-plugin.bat"/>
+        <File Id="ApplicationFile3" Source="plugin.txt"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
