@@ -3,6 +3,11 @@ A bare-bones [WiX](https://wixtoolset.org/) setup that demonstrates copying file
 
 The generated msi installs `install-plugin.bat` and `plugin.txt` into "C:\Program Files (x86)\WiXTestSetup", then executes the `install-plugin.bat` which places the `plugin.txt` in "C:\Program Files\Common Files\VST3".
 
+## Environment
+- Visual Studio 2019
+- WiX plugin for VS (Votive2019.vsix) installed
+- WiX SDK installed and PATH `"C:\Program Files (x86)\WiX Toolset v3.11\bin"` included 
+
 ## Referenced Tutorials:
 - https://www.firegiant.com/wix/tutorial/getting-started/the-files-inside/
 - https://www.add-in-express.com/docs/wix-setup-package.php
